@@ -1,0 +1,74 @@
+import React, {useState} from 'react';
+import styles from './LoginStyles';
+import {View, Dimensions} from 'react-native';
+import {Input, Header, Button} from '../components';
+import {useNavigation} from '@react-navigation/native';
+import packjson from '../../package.json';
+
+interface Login {
+  email: string;
+  password: string;
+}
+
+const windowWidth = Dimensions.get('window').width;
+const env = process.env.NODE_ENV;
+
+const Welcome: React.FC = () => {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState<Login['email']>('');
+  const [password, setPassword] = useState<Login['password']>('');
+  return (
+    <View style={styles.container}>
+      <Header
+        value="Login"
+        color="#789b98"
+        fontSize={24}
+        fontWeight="800"
+        marginBottom={24}
+      />
+      <Input
+        placeholder="Email"
+        borderColor="#000"
+        onChangeText={text => setEmail(text)}
+        value={email}
+      />
+      <Input
+        placeholder="Password"
+        onChangeText={text => setPassword(text)}
+        value={password}
+      />
+      <View style={{left: -windowWidth * 0.28}}>
+        <Button
+          title="Need an account?"
+          onPress={() => navigation.navigate('create')}
+          marginBottom={24}
+          color="#789b98"
+          fontWeight="bold"
+          alignItems="flex-start"
+          justifyContent="flex-start"
+        />
+      </View>
+      <Button
+        title="Submit"
+        onPress={() => navigation.navigate('create')}
+        fontWeight="bold"
+        fontSize={16}
+        backgroundColor="#789b98"
+        color="#fff"
+        textAlign="center"
+        justifyContent="center"
+        padding={0}
+        width={windowWidth * 0.9}
+        height={50}
+        borderRadius={5}
+        marginBottom={24}
+      />
+      <Header
+        value={`v${packjson.version}(${
+          env === 'development' ? 'dev' : 'prod'
+        })`}
+      />
+    </View>
+  );
+};
+export default Welcome;
