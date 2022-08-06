@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './LoginStyles';
 import {View, Dimensions} from 'react-native';
-import {Input, Header, Button} from '../components';
+import {Input, Header, Button, Logo} from '../components';
 import {useNavigation} from '@react-navigation/native';
 import packjson from '../../package.json';
 
@@ -11,6 +11,7 @@ interface Login {
 }
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const env = process.env.NODE_ENV;
 
 const Welcome: React.FC = () => {
@@ -19,12 +20,11 @@ const Welcome: React.FC = () => {
   const [password, setPassword] = useState<Login['password']>('');
   return (
     <View style={styles.container}>
-      <Header
-        value="Login"
-        color="#789b98"
-        fontSize={24}
-        fontWeight="800"
+      <Logo
+        marginTop={75}
         marginBottom={24}
+        height={windowHeight * 0.25}
+        width={windowWidth * 0.9}
       />
       <Input
         placeholder="Email"
@@ -42,18 +42,18 @@ const Welcome: React.FC = () => {
           title="Need an account?"
           onPress={() => navigation.navigate('create')}
           marginBottom={24}
-          color="#789b98"
+          color="#FF9FBE"
           fontWeight="bold"
           alignItems="flex-start"
           justifyContent="flex-start"
         />
       </View>
       <Button
-        title="Submit"
+        title="Login"
         onPress={() => navigation.navigate('create')}
         fontWeight="bold"
         fontSize={16}
-        backgroundColor="#789b98"
+        backgroundColor="#43c6fb"
         color="#fff"
         textAlign="center"
         justifyContent="center"

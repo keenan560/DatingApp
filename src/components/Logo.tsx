@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Image} from 'react-native';
+import logo from '../assets/logo.jpg';
 
 type Props = {
   value: string | number;
@@ -8,28 +9,33 @@ type Props = {
   fontWeight: string;
   marginBottom: number | undefined;
   marginTop: number | undefined;
+  height: number | undefined;
+  width: number | undefined;
 };
 
-const Header = ({
-  value,
+const Logo = ({
   fontSize,
   color,
   fontWeight,
-  marginBottom,
   marginTop,
+  marginBottom,
+  height,
+  width,
 }: Props) => {
   const styles = {
     fontSize: fontSize,
     color: color,
-    fontWeight: fontWeight,
-    marginBottom: marginBottom,
     marginTop: marginTop,
+    marginBottom: marginBottom,
+    fontWeight: fontWeight,
+    height: height,
+    width: width,
   };
   return (
     <View>
-      <Text style={styles}>{value}</Text>
+      <Image style={styles} source={logo} />
     </View>
   );
 };
 
-export default Header;
+export default Logo;
